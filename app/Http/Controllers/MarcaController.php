@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
-    
+
     public function index()
     {
-        return Marca::all('nombre');
+        return Marca::all('id', 'nombre');
     }
 
     public function store(Request $request)
@@ -25,21 +25,17 @@ class MarcaController extends Controller
 
         return $marcas;
     }
-   
+
     public function show(Marca $marca)
     {
-          
     }
-   
-    public function update(Request $request, Marca $marca, $id)
-    {
-        $request->validate([
-            'nombre' => 'required'
-        ]);
 
+    public function update(Request $request, $id)
+    {
+        $nombre = $request->get('nombre');
         $marca = Marca::find($id);
 
-        $marca->nambre = $request->name;
+        $marca->nombre = $nombre;
         $marca->update();
         return $marca;
     }

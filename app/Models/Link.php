@@ -17,9 +17,9 @@ class Link extends Model
         'estatus'
     ];
 
-    public function scopeStatus($query)
+    public function scopeStatus($query, $txt)
     {
-        return $query->where('estatus', '=', 'ON');
+        return $query->where('estatus', '=', $txt);
     }
 
     public function scopeOfSearch($query, $txt)

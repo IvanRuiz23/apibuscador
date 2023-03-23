@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     public function scopeOfSearch($query, $txt)
     {
-        return $query->where('name', '=', $txt);
+        return $query->where('email', '=', $txt);
 
     }
 }

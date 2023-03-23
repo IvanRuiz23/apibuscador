@@ -10,7 +10,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $txt = $request->get('name');
+        $txt = $request->get('email');
         $user = User::ofSearch($txt)
             ->get();
         return $user;

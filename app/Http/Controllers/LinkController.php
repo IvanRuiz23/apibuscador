@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Link;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class LinkController extends Controller
@@ -12,9 +10,10 @@ class LinkController extends Controller
 
     public function index(Request $request)
     {
-        $txt = $request->get('txt');
-        $link = Link::status()
-            ->ofSearch($txt)
+        $txt1 = $request->get('txt');
+        $txt2 = $request->get('estatus');
+        $link = Link::status($txt2)
+            ->ofSearch($txt1)
             ->get();
       
         return $link;
@@ -45,14 +44,12 @@ class LinkController extends Controller
     public function update(Request $request, Link $link, $id)
     {
         $request->validate([
-            'marca' => 'required',
             'descripcion' => 'required',
             'url' => 'required'
         ]);
 
         $link = Link::find($id);
 
-        $link->marca = $request->marca;
         $link->descripcion = $request->descripcion;
         $link->link = $request->url;
 
