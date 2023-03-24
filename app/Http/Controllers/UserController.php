@@ -16,6 +16,12 @@ class UserController extends Controller
         return $user;
     }
 
+    public function getUser()
+    {
+        $user = User::all('id','name','email');
+        return $user;
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -54,9 +60,9 @@ class UserController extends Controller
         return $user;
     }
 
-    public function destroy($name)
+    public function destroy($id)
     {
-        $user = User::find($name);
+        $user = User::find($id);
         if (is_null($user)) {
             return response()->json('No se completó la operación', 404);
         }

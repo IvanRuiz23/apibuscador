@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CvaController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\UserController;
@@ -12,3 +11,4 @@ Route::apiResource('user',UserController::class);
 Route::put('off/{id}',[LinkController::class,'off']);
 Route::put('on/{id}',[LinkController::class,'on']);
 Route::get('cva',[LinkController::class, 'cva']);
+Route::get('allUser',[UserController::class, 'getUser']);
