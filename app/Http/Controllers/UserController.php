@@ -51,7 +51,7 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        $user->nombre = $name;
+        $user->name = $name;
         $user->email = $email;
         $user->update();
         return $user;
@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (is_null($user)) {
-            return response()->json('No se completó la operación', 404);
+            return response()->json('No se complet贸 la operaci贸n', 404);
         }
         $user->delete();
         return response()->noContent();
