@@ -48,7 +48,7 @@ Route::get('llaptop',[LaptopController::class,'index']);
 Route::get('lmonitor',[MonitorController::class,'index']);
 Route::get('lpantalla',[PantallaController::class,'index']);
 Route::get('lpcs',[PcController::class,'index']);
-Route::get('lpryector',[ProyectorController::class,'index']);
+Route::get('lproyector',[ProyectorController::class,'index']);
 Route::get('lscanner',[ScannerController::class,'index']);
 Route::get('viewcomparativos',[ComparativoController::class,'index']);
 
