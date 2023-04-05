@@ -16,6 +16,7 @@ use App\Http\Controllers\PantallaController;
 use App\Http\Controllers\ProyectorController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\LaptopController;
+use App\Http\Controllers\PaginaWebController;
 
 
 // api de links
@@ -50,3 +51,7 @@ Route::get('lpcs',[PcController::class,'index']);
 Route::get('lpryector',[ProyectorController::class,'index']);
 Route::get('lscanner',[ScannerController::class,'index']);
 Route::get('viewcomparativos',[ComparativoController::class,'index']);
+
+// api de páginas
+Route::post('gweb',[PaginaWebController::class,'guardar']);
+Route::post('lweb',[PaginaWebController::class,'links']);
