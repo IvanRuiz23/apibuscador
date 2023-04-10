@@ -21,10 +21,10 @@ class ComparativoController extends Controller
     {
         $txt = $request->text;
         if ($txt == '' || is_null($txt) == True) {
-            return Comparativos::all('id','nombre','comparador');
+            return Comparativos::all('id','nombre','mejor','comparador');
 
         }else{
-            $sql = DB::table('comparativos')->select('id','nombre','comparador')->where('nombre','LIKE',"%{$txt}%")->get();
+            $sql = DB::table('comparativos')->select('id','nombre','mejor','comparador')->where('nombre','LIKE',"%{$txt}%")->get();
             return $sql;
         }
     }
@@ -270,6 +270,7 @@ class ComparativoController extends Controller
             if($compexis==[]){
                 $comparativo = Comparativos::create([
                     'nombre'=> $request->nombre,
+                    'mejor'=>$request->mejor,
                     'comparador'=> $request->comparador,
                 ]);
                 $isjson = $request->datos;
@@ -324,6 +325,7 @@ class ComparativoController extends Controller
             if($compexis==[]){
                 $comparativo = Comparativos::create([
                     'nombre'=> $request->nombre,
+                    'mejor'=>$request->mejor,
                     'comparador'=> $request->comparador,
                 ]);
                 $isjson = $request->datos;
@@ -387,6 +389,7 @@ class ComparativoController extends Controller
             if($compexis==[]){
                 $comparativo = Comparativos::create([
                     'nombre'=> $request->nombre,
+                    'mejor'=>$request->mejor,
                     'comparador'=> $request->comparador,
                 ]);
                 $isjson = $request->datos;
@@ -453,6 +456,7 @@ class ComparativoController extends Controller
             if($compexis==[]){
                 $comparativo = Comparativos::create([
                     'nombre'=> $request->nombre,
+                    'mejor'=>$request->mejor,
                     'comparador'=> $request->comparador,
                 ]);
                 $isjson = $request->datos;
@@ -511,6 +515,7 @@ class ComparativoController extends Controller
             if($compexis==[]){
                 $comparativo = Comparativos::create([
                     'nombre'=> $request->nombre,
+                    'mejor'=>$request->mejor,
                     'comparador'=> $request->comparador,
                 ]);
                 $isjson = $request->datos;
@@ -568,6 +573,7 @@ class ComparativoController extends Controller
             if($compexis==[]){
                 $comparativo = Comparativos::create([
                     'nombre'=> $request->nombre,
+                    'mejor'=>$request->mejor,
                     'comparador'=> $request->comparador,
                 ]);
                 $isjson = $request->datos;
@@ -629,6 +635,7 @@ class ComparativoController extends Controller
             if($compexis==[]){
                 $comparativo = Comparativos::create([
                     'nombre'=> $request->nombre,
+                    'mejor'=>$request->mejor,
                     'comparador'=> $request->comparador,
                 ]);
                 $isjson = $request->datos;

@@ -12,6 +12,7 @@ class Comparativos extends Model
 
     protected $fillable = [
         'nombre',
+        'mejor',
         'comparador'
     ];
 }
