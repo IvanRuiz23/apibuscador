@@ -19,15 +19,16 @@ class MarcaController extends Controller
             'nombre' => 'required'
         ]);
 
-        //get image
-        $img = base64_decode($request->input('imagen'));
-        $image_name = $request->nombre;
+        $base64_string = $request->get('imagen');
+        $nombre = $request->nombre;
 
-        $path = public_path() . "\\" . "images" . "\\" . "$image_name.jpg'";
-        file_put_contents($path, $img);
+        $image = base64_decode($base64_string);
+        $filename = 'image_name.png';
+        $path = public_path('images/' . $filename);
+        file_put_contents($path, $image);
 
         $marcas = new Marca();
-        $marcas->nombre = $request->nombre;
+        $marcas->nombre = $nombre;
         $marcas->save();
 
         return $marcas;
@@ -58,19 +59,20 @@ class MarcaController extends Controller
     }
 
 
-    // public function stores(Request $request)
+    // public function updateImage(Request $request)
     // {
-    //     $request->validate([
-    //         'title' => 'required',
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //     ]);
 
-    //     $imageName = time() . '.' . $request->image->extension();
+    //     $imageName = $this->randomImageName();
+    //     $fullPath = public_path('/uploaded/' . $imageName);
 
-    //     $request->image->move(public_path('images'), $imageName);
+    //     $image = $request->image;  // base64 encoded
+    //     $imageContent = $this->imageBase64Content($image);
 
-    //     return back()
-    //         ->with('success', 'You have successfully upload image.')
-    //         ->with('image', $imageName);
+    //     File::put($fullPath, $imageContent);
+
+    //     $user->photo = $imageName;
+    //     $user->save();
+
+    //     return $user;
     // }
 }
