@@ -13,7 +13,7 @@ class MarcaController extends Controller
         return Marca::all('id', 'nombre');
     }
 
-    public function guardarM(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required'
