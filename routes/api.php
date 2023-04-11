@@ -17,6 +17,7 @@ use App\Http\Controllers\PaginaWebController;
 
 // api de links
 Route::apiResource('marcas', MarcaController::class);
+Route::post('guardarM',[MarcaController::class,'guardarM']);
 Route::apiResource('detalles', LinkController::class);
 Route::apiResource('user',UserController::class);
 Route::put('off/{id}',[LinkController::class,'off']);
