@@ -19,6 +19,13 @@ class MarcaController extends Controller
             'nombre' => 'required'
         ]);
 
+        //get image
+        $img = base64_decode($request->input('imagen'));
+        $image_name = $request->nombre;
+
+        $path = public_path() . "\\" . "images" . "\\" . "$image_name.jpg'";
+        file_put_contents($path, $img);
+
         $marcas = new Marca();
         $marcas->nombre = $request->nombre;
         $marcas->save();
@@ -49,4 +56,21 @@ class MarcaController extends Controller
         $marcas->delete();
         return response()->noContent();
     }
+
+
+    // public function stores(Request $request)
+    // {
+    //     $request->validate([
+    //         'title' => 'required',
+    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     ]);
+
+    //     $imageName = time() . '.' . $request->image->extension();
+
+    //     $request->image->move(public_path('images'), $imageName);
+
+    //     return back()
+    //         ->with('success', 'You have successfully upload image.')
+    //         ->with('image', $imageName);
+    // }
 }

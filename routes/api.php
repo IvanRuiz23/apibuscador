@@ -1,9 +1,5 @@
 <?php
 
-// use App\Http\Controllers\ComparativoController;
-// use App\Http\Controllers\ImpresoraController;
-// use App\Http\Controllers\LaptopController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\MarcaController;
