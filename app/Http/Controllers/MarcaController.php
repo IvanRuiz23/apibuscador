@@ -23,7 +23,7 @@ class MarcaController extends Controller
         $nombre = $request->nombre;
 
         $image = base64_decode($base64_string);
-        $filename = 'image_name.png';
+        $filename = "$nombre.png";
         $path = public_path('images/' . $filename);
         file_put_contents($path, $image);
 
