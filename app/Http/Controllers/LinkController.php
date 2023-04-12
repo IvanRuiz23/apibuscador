@@ -15,15 +15,15 @@ class LinkController extends Controller
         $txt1 = $request->txt;
         $txt2 = $request->estatus;
         $marca = $request->marca;
-        if($marca != ''){
+        if($txt2=='OFF'){
             $sql = DB::table('links')->where('estatus', '=', $txt2)->get();
             return $sql;
         }else{
-            if($txt1!=''){
+            if($txt1 != '' && is_null($txt1)==false){
                 $sql = DB::table('links')->where('estatus', '=', $txt2)->where('descripcion', 'LIKE', '%' . $txt1 . '%')->where('marca','=',$marca)->get();
                 return $sql;
             }else{
-                $sql = DB::table('links')->where('estatus', '=', $txt2)->where('marca','=',$marca)->get();
+                $sql = DB::table('links')->where('marca','=',$marca)->where('estatus', '=', $txt2)->get();
                 return $sql;
             }
         }
