@@ -19,43 +19,12 @@ class MarcaController extends Controller
         $request->validate([
             'nombre' => 'required'
         ]);
-
-        $base64_string = $request->input('imagen');
         $nombre = $request->nombre;
+        $img = $request->file('imagen')->move(public_path('images'),"$nombre.jpg");
+        $marcas = new Marca();
+        $marcas->nombre = $nombre;
+        $marcas->save();
 
-        $image = base64_decode($base64_string);
-        $filename = "$nombre.png";
-
-        Storage::put('images/' . $filename, $image);
-
-        // $path = public_path('images/' . $filename);
-        // file_put_contents($path, $image);
-
-        // $marcas = new Marca();
-        // $marcas->nombre = $nombre;
-        // $marcas->save();
-
-        // return $marcas;
-    }
-
-    public function guardarM(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required'
-        ]);
-        error_log($request->imagen);
-        //get image
-        $img = base64_decode($request->input('imagen'));
-        $image_name = $request->nombre;
-
-        $path = public_path() . "\\" . "images" . "\\" . "$image_name.jpg";
-        file_put_contents($path, $img);
-
-        // $marcas = new Marca();
-        // $marcas->nombre = $request->nombre;
-        // $marcas->save();
-
-        // return $marcas;
         return 'OK';
     }
 
