@@ -24,6 +24,7 @@ Route::put('off/{id}',[LinkController::class,'off']);
 Route::put('on/{id}',[LinkController::class,'on']);
 Route::get('cva',[LinkController::class, 'cva']);
 Route::get('allUser',[UserController::class, 'getUser']);
+Route::post('img',[MarcaController::class, 'imagenUpload']);
 
 // api de comparativas
 Route::post('gimpresora',[ComparativoController::class,'guardarImpresora']);

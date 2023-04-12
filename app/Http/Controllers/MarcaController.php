@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -19,19 +20,22 @@ class MarcaController extends Controller
             'nombre' => 'required'
         ]);
 
-        $base64_string = $request->get('imagen');
+        $base64_string = $request->input('imagen');
         $nombre = $request->nombre;
 
         $image = base64_decode($base64_string);
         $filename = "$nombre.png";
-        $path = public_path('images/' . $filename);
-        file_put_contents($path, $image);
 
-        $marcas = new Marca();
-        $marcas->nombre = $nombre;
-        $marcas->save();
+        Storage::put('images/' . $filename, $image);
 
-        return $marcas;
+        // $path = public_path('images/' . $filename);
+        // file_put_contents($path, $image);
+
+        // $marcas = new Marca();
+        // $marcas->nombre = $nombre;
+        // $marcas->save();
+
+        // return $marcas;
     }
 
     public function guardarM(Request $request)
@@ -96,4 +100,19 @@ class MarcaController extends Controller
 
     //     return $user;
     // }
+
+    public function imagenUpload(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        $base64_string = $request->input('imagen');
+        $nombre = $request->nombre;
+
+        $image = base64_decode($base64_string);
+        $filename = "$nombre.png";
+
+        Storage::put('images/' . $filename, $image);
+    }
 }
