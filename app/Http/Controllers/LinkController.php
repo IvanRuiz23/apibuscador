@@ -19,7 +19,7 @@ class LinkController extends Controller
             $sql = DB::table('links')->where('estatus', '=', $txt2)->get();
             return $sql;
         }else{
-            if($txt1 != '' || is_null($txt1)==false){
+            if($txt1 != '' && is_null($txt1)==false){
                 $sql = DB::table('links')->where('estatus', '=', $txt2)->where('descripcion', 'LIKE', '%' . $txt1 . '%')->where('marca','=',$marca)->get();
                 return $sql;
             }else{
@@ -27,17 +27,6 @@ class LinkController extends Controller
                 return $sql;
             }
         }
-        // if($marca != ''){
-
-        // }else{
-        //     if($txt1!=''){
-                // $sql = DB::table('links')->where('estatus', '=', $txt2)->where('descripcion', 'LIKE', '%' . $txt1 . '%')->where('marca','=',$marca)->get();
-                // return $sql;
-        //     }else{
-                // $sql = DB::table('links')->where('estatus', '=', $txt2)->where('marca','=',$marca)->get();
-                // return $sql;
-        //     }
-        // }
     }
 
     public function store(Request $request)
