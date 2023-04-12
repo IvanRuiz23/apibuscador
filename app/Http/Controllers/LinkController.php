@@ -19,7 +19,7 @@ class LinkController extends Controller
             $sql = DB::table('links')->where('estatus', '=', $txt2)->get();
             return $sql;
         }else{
-            if($tx1!=''){
+            if($txt1!=''){
                 $sql = DB::table('links')->where('estatus', '=', $txt2)->where('descripcion', 'LIKE', '%' . $txt1 . '%')->where('marca','=',$marca)->get();
                 return $sql;
             }else{
