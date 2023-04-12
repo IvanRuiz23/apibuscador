@@ -51,8 +51,7 @@ class MarcaController extends Controller
         if (is_null($marcas)) {
             return response()->json('No se completó la operación', 404);
         }
-        $delete = mkdir("/public/images/$nombre.jpg");
-        unlink($delete);
+        unlink("/public/images/$nombre.jpg");
         $marcas->delete();
         return response()->noContent();
     }

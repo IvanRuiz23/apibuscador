@@ -17,4 +17,15 @@ class Link extends Model
         'estatus'
     ];
 
+    public function scopeOptionOne($query, $txt)
+    {
+        return $query->where('estatus', '=', $txt);
+    }
+
+    public function scopeOptionTwo($query, $txt, $txt1, $marca)
+    {
+        return $query->where('estatus', '=', $txt)
+        ->where('descripcion', 'LIKE', '%' . $txt1 . '%')
+        ->where('marca','=',$marca);
+    }
 }
