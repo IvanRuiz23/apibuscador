@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Marca;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use File;
 
 class MarcaController extends Controller
 {
@@ -51,7 +52,8 @@ class MarcaController extends Controller
         if (is_null($marcas)) {
             return response()->json('No se completó la operación', 404);
         }
-        unlink("/public/images/$nombre.jpg");
+        File::delete(public_path("images/$nombre.jpg"));
+        // unlink("/public/images/$nombre.jpg");
         $marcas->delete();
         return response()->noContent();
     }
