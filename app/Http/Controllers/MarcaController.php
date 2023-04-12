@@ -24,7 +24,7 @@ class MarcaController extends Controller
         $marcas->nombre = $nombre;
         $marcas->save();
 
-        return $marcas;
+        return 'OK';
     }
 
     public function show(Marca $marca)
