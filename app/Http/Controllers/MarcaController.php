@@ -11,7 +11,7 @@ class MarcaController extends Controller
 
     public function index()
     {
-        return Marca::all('id', 'nombre');
+        return Marca::all('id', 'nombre', 'direccion');
     }
 
     public function store(Request $request)
@@ -20,9 +20,11 @@ class MarcaController extends Controller
             'nombre' => 'required'
         ]);
         $nombre = $request->nombre;
-        $img = $request->file('imagen')->move(public_path('images'),"$nombre.jpg");
+        $img = $request->file('imagen')->move(public_path('images'), "$nombre.jpg");
+        $link = asset("images/$nombre.jpg");
         $marcas = new Marca();
         $marcas->nombre = $nombre;
+        $marcas->direccion = $link;
         $marcas->save();
 
         return 'OK';
@@ -45,43 +47,13 @@ class MarcaController extends Controller
     public function destroy($id)
     {
         $marcas = Marca::find($id);
+        $nombre = $marcas->nombre;
         if (is_null($marcas)) {
             return response()->json('No se completó la operación', 404);
         }
+        $delete = mkdir("/public/images/$nombre.jpg");
+        unlink($delete);
         $marcas->delete();
         return response()->noContent();
-    }
-
-
-    // public function updateImage(Request $request)
-    // {
-
-    //     $imageName = $this->randomImageName();
-    //     $fullPath = public_path('/uploaded/' . $imageName);
-
-    //     $image = $request->image;  // base64 encoded
-    //     $imageContent = $this->imageBase64Content($image);
-
-    //     File::put($fullPath, $imageContent);
-
-    //     $user->photo = $imageName;
-    //     $user->save();
-
-    //     return $user;
-    // }
-
-    public function imagenUpload(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required'
-        ]);
-
-        $base64_string = $request->input('imagen');
-        $nombre = $request->nombre;
-
-        $image = base64_decode($base64_string);
-        $filename = "$nombre.png";
-
-        Storage::put('images/' . $filename, $image);
     }
 }

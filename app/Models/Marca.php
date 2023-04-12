@@ -12,6 +12,7 @@ class Marca extends Model
 
     protected $fillable = [
       'id',
-      'nombre'  
+      'nombre',
+      'direccion' 
     ];
 }
