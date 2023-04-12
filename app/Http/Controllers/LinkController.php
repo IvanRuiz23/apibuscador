@@ -4,19 +4,29 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+
 
 class LinkController extends Controller
 {
 
     public function index(Request $request)
     {
-        $txt1 = $request->get('txt');
-        $txt2 = $request->get('estatus');
-        $link = Link::status($txt2)
-            ->ofSearch($txt1)
-            ->get();
-      
-        return $link;
+        $txt1 = $request->txt;
+        $txt2 = $request->estatus;
+        $marca = $request->marca;
+        if($marca != ''){
+            $sql = DB::table('links')->where('estatus', '=', $txt2)->get();
+            return $sql;
+        }else{
+            if($tx1!=''){
+                $sql = DB::table('links')->where('estatus', '=', $txt2)->where('descripcion', 'LIKE', '%' . $txt1 . '%')->where('marca','=',$marca)->get();
+                return $sql;
+            }else{
+                $sql = DB::table('links')->where('estatus', '=', $txt2)->where('marca','=',$marca)->get();
+                return $sql;
+            }
+        }
     }
 
     public function store(Request $request)
@@ -38,7 +48,7 @@ class LinkController extends Controller
 
     public function show()
     {
-        
+
     }
 
     public function update(Request $request, Link $link, $id)
@@ -78,7 +88,7 @@ class LinkController extends Controller
         ]);
         return $link;
     }
-    
+
     public function cva(Request $request)
     {
         $cliente = $request->get('cliente');
