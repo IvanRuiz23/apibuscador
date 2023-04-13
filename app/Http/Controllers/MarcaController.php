@@ -37,10 +37,10 @@ class MarcaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $nombre = $request->get('nombre');
-        $marca = Marca::find($id);
+        $nombre = $request->nombre;
         $img = $request->file('imagen')->move(public_path('images'), "$nombre.jpg");
         $link = asset("images/$nombre.jpg");
+        $marca = Marca::find($id);
         $marca->nombre = $nombre;
         $marca->direccion = $link;
         $marca->update();
