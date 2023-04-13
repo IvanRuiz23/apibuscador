@@ -38,14 +38,17 @@ class MarcaController extends Controller
     public function update(Request $request, $id)
     {
         $nombre = $request->nombre;
-        $img = $request->file('imagen')->move(public_path('images'), "$nombre.jpg");
-        $link = asset("images/$nombre.jpg");
         $marca = Marca::find($id);
         $nombredel = $marca->nombre;
         $marca->nombre = $nombre;
-        $marca->direccion = $link;
+        if($request->file('imagen')!=NULL){
+            File::delete(public_path("images/$nombredel.jpg"));
+            $img = $request->file('imagen')->move(public_path('images'), "$nombre.jpg");
+            $link = asset("images/$nombre.jpg");
+            $marca->direccion = $link;
+
+        }
         $marca->update();
-        File::delete(public_path("images/$nombredel.jpg"));
         return $marca;
     }
 
