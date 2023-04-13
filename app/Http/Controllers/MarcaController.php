@@ -41,9 +41,11 @@ class MarcaController extends Controller
         $img = $request->file('imagen')->move(public_path('images'), "$nombre.jpg");
         $link = asset("images/$nombre.jpg");
         $marca = Marca::find($id);
+        $nombredel = $marca->nombre;
         $marca->nombre = $nombre;
         $marca->direccion = $link;
         $marca->update();
+        File::delete(public_path("images/$nombredel.jpg"));
         return $marca;
     }
 
