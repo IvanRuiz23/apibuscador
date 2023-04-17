@@ -13,6 +13,6 @@ class CtController extends Controller
             'cliente'=>'GDL1351',
             'rfc'=>'ATI030129753'
         ]);
-        return $response->token;
+        return $response['token'];
     }
 }
