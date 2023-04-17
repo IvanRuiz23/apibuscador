@@ -13,6 +13,9 @@ class CtController extends Controller
             'cliente'=>'GDL1351',
             'rfc'=>'ATI030129753'
         ]);
-        return $response['token'];
+        $art = Http::withHeaders([
+            'x-auth'=>$response['token']
+        ])->get('http://connect.ctonline.mx:3001/existencia/promociones/BATDTS020');
+        return $art;
     }
 }
