@@ -13,6 +13,7 @@ use App\Http\Controllers\ProyectorController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\LaptopController;
 use App\Http\Controllers\PaginaWebController;
+use App\Http\Controllers\CtController;
 
 
 // api de links
@@ -52,3 +53,6 @@ Route::get('viewcomparativos',[ComparativoController::class,'index']);
 // api de páginas
 Route::post('gweb',[PaginaWebController::class,'guardar']);
 Route::post('lweb',[PaginaWebController::class,'links']);
+
+//CT
+Route::post('ctonline',[CtController::class, 'index']);
