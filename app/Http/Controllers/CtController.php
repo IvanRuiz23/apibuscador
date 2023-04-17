@@ -15,7 +15,7 @@ class CtController extends Controller
         ]);
         $art = Http::withHeaders([
             'x-auth'=>$response['token']
-        ])->get('http://connect.ctonline.mx:3001/existencia/promociones/BATDTS020');
+        ])->get('http://connect.ctonline.mx:3001/existencia/promociones/MI4218');
         return $art;
     }
 }
