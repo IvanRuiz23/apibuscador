@@ -55,6 +55,19 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => '216.70.82.104',
+            'username' => 'GDL1351',
+            'password' => 'j2U2QAPRm6elUvtMGskd',
+            'port' => 21,
+         
+            // Optional FTP Settings...
+            // 'root' => env('FTP_ROOT'),
+            // 'passive' => true,
+            // 'ssl' => true,
+            // 'timeout' => 30,
+        ],
 
     ],
 
