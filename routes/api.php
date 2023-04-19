@@ -55,4 +55,4 @@ Route::post('gweb',[PaginaWebController::class,'guardar']);
 Route::post('lweb',[PaginaWebController::class,'links']);
 
 //CT
-Route::post('ctonline',[CtController::class, 'index']);
+Route::get('ctonline',[CtController::class, 'index']);
